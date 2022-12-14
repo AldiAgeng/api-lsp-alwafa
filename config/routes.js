@@ -29,6 +29,13 @@ apiRouter.post("/api/v1/administrator",
 apiRouter.patch("/api/v1/administrator/:id", /* validations.administratorValidation.updateValidation, middlewares.bodyMiddleware, */ controllers.api.v1.administrator.updateAdministrator);
 apiRouter.delete("/api/v1/administrator/:id", controllers.api.v1.administrator.deleteAdministrator);
 
+// Admin Manage User
+// Assessor
+apiRouter.get("/api/v1/admin/assessor", controllers.api.v1.assessor.getAllAssessors);
+apiRouter.get("/api/v1/admin/assessor/:id", controllers.api.v1.assessor.getAssessorById);
+apiRouter.post("/api/v1/admin/assessor", validations.assessorValidation.createValidation,middlewares.bodyMiddleware, controllers.api.v1.assessor.createAssessor);
+apiRouter.patch("/api/v1/admin/assessor/:id", controllers.api.v1.assessor.updateAssessor);
+apiRouter.delete("/api/v1/admin/assessor/:id", controllers.api.v1.assessor.deleteAssessor);
 /**
  * TODO: Delete this, this is just a demonstration of
  *       error handler

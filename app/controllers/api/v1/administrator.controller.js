@@ -72,7 +72,7 @@ module.exports = {
         }
       })
     } catch (error) {
-      if(error.name === "BadRequest" || error.name === "SequelizeValidationError") {
+      if(error.name === "SequelizeValidationError") {
         res.status(400).json({
           status: "failed",
           statusCode: 400,
@@ -106,7 +106,12 @@ module.exports = {
         })
       }
 
-      await Administrator.update(req.body, {
+      await Administrator.update({
+        name: req.body.name,
+        position: req.body.position,
+        certification_field: req.body.certification_field,
+        phone_number: req.body.phone_number,
+      }, {
         where: {
           id: req.params.id
         }
@@ -154,9 +159,6 @@ module.exports = {
         status: "success",
         statusCode: 200,
         message: "Administrator deleted successfully",
-        data: {
-          administrator
-        }
       })
     } catch (error) {
       if(error.name === "NotFound") {

@@ -74,12 +74,21 @@ module.exports = {
       })
 
     }catch(error){
-      res.status(500).json({
-        status: "error",
-        statusCode: 500,
-        name: "InternalServerError",
-        message: `Internal Server Error: ${error}`
-      })
+      if(error.name === "SequelizeValidationError") {
+        res.status(400).json({
+          status: "failed",
+          statusCode: 400,
+          name: "BadRequest",
+          message: error.message
+        })
+      }else{
+        res.status(500).json({
+          status: "error",
+          statusCode: 500,
+          name: "InternalServerError",
+          message: `Internal Server Error: ${error}`
+        })
+      } 
     }
   },
   async updateAssessor(req, res){
@@ -90,10 +99,10 @@ module.exports = {
         }
       })
       if(assessor){
-        const password = await utils.encryptedPassword(req.body.password);
         await Assessor.update({
-          ...req.body,
-          password
+          name: req.body.name,
+          certification_field: req.body.certification_field,
+          phone_number: req.body.phone_number,
         }, {
           where: {
             id: req.params.id
@@ -141,9 +150,6 @@ module.exports = {
           status: "success",
           statusCode: 200,
           message: "Assessor deleted successfully",
-          data: {
-            assessor
-          }
         })
       }else{
         res.status(404).json({

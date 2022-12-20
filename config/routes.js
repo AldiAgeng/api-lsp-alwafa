@@ -36,6 +36,12 @@ apiRouter.get("/api/v1/admin/assessor/:id", controllers.api.v1.assessor.getAsses
 apiRouter.post("/api/v1/admin/assessor", validations.assessorValidation.createValidation,middlewares.bodyMiddleware, controllers.api.v1.assessor.createAssessor);
 apiRouter.patch("/api/v1/admin/assessor/:id", controllers.api.v1.assessor.updateAssessor);
 apiRouter.delete("/api/v1/admin/assessor/:id", controllers.api.v1.assessor.deleteAssessor);
+// Accession
+apiRouter.get("/api/v1/admin/accession", controllers.api.v1.accession.getAllAccessions);
+apiRouter.get("/api/v1/admin/accession/:id", controllers.api.v1.accession.getAccessionById);
+apiRouter.post("/api/v1/admin/accession", validations.accessionValidation.createValidation,middlewares.bodyMiddleware, controllers.api.v1.accession.createAccession);
+apiRouter.patch("/api/v1/admin/accession/:id", controllers.api.v1.accession.updateAccession);
+apiRouter.delete("/api/v1/admin/accession/:id", controllers.api.v1.accession.deleteAccession);
 /**
  * TODO: Delete this, this is just a demonstration of
  *       error handler

@@ -42,6 +42,14 @@ apiRouter.get("/api/v1/admin/accession/:id", middlewares.authMiddleware.authAdmi
 apiRouter.post("/api/v1/admin/accession", middlewares.authMiddleware.authAdmin, validations.accessionValidation.createValidation,middlewares.bodyMiddleware, controllers.api.v1.accession.createAccession);
 apiRouter.patch("/api/v1/admin/accession/:id", middlewares.authMiddleware.authAdmin, controllers.api.v1.accession.updateAccession);
 apiRouter.delete("/api/v1/admin/accession/:id", middlewares.authMiddleware.authAdmin, controllers.api.v1.accession.deleteAccession);
+
+// Competency Test Place
+apiRouter.get("/api/v1/admin/competency-test-place", middlewares.authMiddleware.authAdmin, controllers.api.v1.competencyTestPlace.getAllCompetencyTestPlaces);
+apiRouter.get("/api/v1/admin/competency-test-place/:id", middlewares.authMiddleware.authAdmin, controllers.api.v1.competencyTestPlace.getCompetencyTestPlaceById); 
+apiRouter.post("/api/v1/admin/competency-test-place", middlewares.authMiddleware.authAdmin, validations.competencyTestPlaceValidation.createCompetencyTestPlace, middlewares.bodyMiddleware, controllers.api.v1.competencyTestPlace.createCompetencyTestPlace);
+apiRouter.patch("/api/v1/admin/competency-test-place/:id", middlewares.authMiddleware.authAdmin, controllers.api.v1.competencyTestPlace.updateCompetencyTestPlace);
+apiRouter.delete("/api/v1/admin/competency-test-place/:id", middlewares.authMiddleware.authAdmin, controllers.api.v1.competencyTestPlace.deleteCompetencyTestPlace);
+
 /**
  * TODO: Delete this, this is just a demonstration of
  *       error handler

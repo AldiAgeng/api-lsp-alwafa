@@ -4,14 +4,16 @@
 
 const administrator = require("./administrator.controller");
 const user = require("./user.controller");
-const assessor = require("./assessor.controller")
-const accession = require("./accession.controller")
+const assessor = require("./assessor.controller");
+const accession = require("./accession.controller");
 const competencyTestPlace = require("./competency.test.place.controller");
+const schedule = require("./schedule.controller");
 
 module.exports = {
   administrator,
   user,
   assessor,
   accession,
-  competencyTestPlace
+  competencyTestPlace,
+  schedule,
 };
